@@ -33,4 +33,7 @@ public:
 
 int main()
 {
+    int a[9] = {4,5,6,7,8,0,1,2,3};
+    Solution s;
+    cout <<s.search(a, 9, 1)<<endl;
 }
