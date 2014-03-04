@@ -15,7 +15,7 @@ void function(int *a, int num)
 
     cout <<"list: ";
     for(int i = 0; i < index; i++){
-        cout <<a[i];
+        cout <<a[i]<< " ";
     }
     cout <<endl;
 }
