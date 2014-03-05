@@ -23,7 +23,7 @@ using namespace std;
         表示从顶点0到顶点i的最短距离为（目前0到i的最短距离 与 0到j的最短距离+j到i最短距离）的
         最小值。
  * (4)coding
- *
+ * (5)check
  */
 
 //图的表示使用邻接矩阵
@@ -115,5 +115,5 @@ int main()
         visitedNode[tmpNode] = 1;
     }
 
-    cout <<minTable[4]<<endl;
+    cout <<minTable[4]<<endl;//顶点4是终点
 }
