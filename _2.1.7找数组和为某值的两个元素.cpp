@@ -9,7 +9,15 @@ using namespace std;
  * output:index1=0, index2=1
  */
 
-//hash
+/*
+ * 1、先排序，用2个变量，用a来遍历，每个a在用b来夹逼，时间复杂度O(n^2)
+ */
+
+/*
+ * 2、位图法
+ */
+
+//位图法
 void function(int *a, int num, int target);
 
 int main()
