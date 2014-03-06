@@ -79,9 +79,6 @@ public:
             }
         }
 
-
-
-
         char buffer[64];
         memset(buffer, 0, 64);
         sprintf(buffer, "%d\n", maxTable[MAXMED-1][MAXTIME]);
