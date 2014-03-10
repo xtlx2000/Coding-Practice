@@ -9,7 +9,7 @@ using namespace std;
 //  <1> s[i][i] =1
 //  <2> s[i][i+1]根据str[i]==str[i+1]直接判断
 //  <3> s[i][j](其中j>i+1)则直接判断str[i] == str[j]如果相同则根据小状态s[i+1][j-1]来判断
-//4 conding
+//4 coding
 //5 check
 class Solution{
 public:
