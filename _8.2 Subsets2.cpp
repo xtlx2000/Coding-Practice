@@ -9,7 +9,24 @@ void subsets(string str, int step)
 {
     //1 leaf node
     if(step >= str.size()){
-        result.push_back(curStr);
+
+        bool found = false;
+
+        //5 drop the replications
+        for(vector<string>::iterator iter = result.begin();
+            iter != result.end();
+            iter++){
+
+            if(*iter == curStr){
+                found = true;
+            }
+        }
+
+        if(found){
+        }else{
+            result.push_back(curStr);
+
+        }
 
         //3
         return;
@@ -39,7 +56,7 @@ void subsets(string str, int step)
 
 int main()
 {
-    string a = "123";
+    string a = "122";
     subsets(a, 0);
 
     for(vector<string>::iterator iter = result.begin();
