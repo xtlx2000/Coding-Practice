@@ -55,8 +55,8 @@ int main()
 
     for(vector<string>::iterator iter = result.begin();
         iter != result.end();
-        iter++
-    ){
+        iter++){
+
         cout <<*iter<<endl;
     }
 
