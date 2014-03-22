@@ -1,6 +1,4 @@
 Coding-Practice
 ===============
 
-my Coding Practice
-
-now 2.2.14
+I want to persist to practise the alibity of algorithm and coding.
