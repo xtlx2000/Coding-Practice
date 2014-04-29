@@ -26,7 +26,7 @@ int shijizhi(int shi, int i_)
 int findNum(int step)
 {
     //1 leaf node
-    if(step > num){
+    if(step >= num){
         int tmp = cur;
         for(int chushu = 9; chushu > 1; chushu--){
             if(tmp % chushu == 0){
