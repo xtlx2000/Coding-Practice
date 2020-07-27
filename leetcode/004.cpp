@@ -4,49 +4,49 @@
 class MiddleFinder
 {
     std::vector<std::vector<int> > mVecs;
-    int mStart1;
-    int mStart2;
 
-    int findKth(int k)
+    int findKth(int k, int start1, int start2)
     {
         // end condition
         if (k == 1)
         {
-            if (mStart1 >= mVecs[0].size())
+            if (start1 >= mVecs[0].size())
             {
-                return mVecs[1][mStart2];
+                return mVecs[1][start2];
             }
-            if (mStart2 >= mVecs[1].size())
+            if (start2 >= mVecs[1].size())
             {
-                return mVecs[0][mStart1];
+                return mVecs[0][start1];
             }
-            if (mVecs[0][mStart1] <= mVecs[1][mStart2])
+            if (mVecs[0][start1] <= mVecs[1][start2])
             {
-                return mVecs[0][mStart1];
+                return mVecs[0][start1];
             }
             else
             {
-                return mVecs[1][mStart2];
+                return mVecs[1][start2];
             }
         }
 
         int halfK = k/2;
-        int idx1 = mStart1 + halfK - 1 > mVecs[0].size()-1 ? mVecs[0].size()-1 : mStart1 + halfK - 1;
-        int idx2 = mStart2 + halfK - 1 > mVecs[1].size()-1 ? mVecs[1].size()-1 : mStart2 + halfK - 1;
+        int idx1 = start1 + halfK - 1 > mVecs[0].size()-1 ? mVecs[0].size()-1 : start1 + halfK - 1;
+        int idx2 = start2 + halfK - 1 > mVecs[1].size()-1 ? mVecs[1].size()-1 : start2 + halfK - 1;
 
         int diff = 0;
         if (mVecs[0][idx1] >= mVecs[1][idx2])
         {
-            diff = idx2 - mStart2 + 1;
-            mStart2 = idx2 + 1;
+            diff = idx2 - start2 + 1;
+            start2 = idx2 + 1;
+            std::cout <<"delete before "<< mVecs[1][idx2] << std::endl;
         }
         else
         {
-            diff = idx1 - mStart1 + 1;
-            mStart1 = idx1 + 1;
+            diff = idx1 - start1 + 1;
+            start1 = idx1 + 1;
+            std::cout <<"delete before "<< mVecs[0][idx1] << std::endl;
         }
 
-        return findKth(k - diff);
+        return findKth(k - diff, start1, start2);
     }
 
 public:
@@ -58,18 +58,16 @@ public:
         }
 
         mVecs = vecs;
-        mStart1 = 0;
-        mStart2 = 0;
         size_t size1 = vecs[0].size();
         size_t size2 = vecs[1].size();
 
         if ((size1 + size2) % 2 == 0)
         {
-            return (findKth((size1+size2)/2) + findKth((size1+size2)/2+1))/2;
+            return float(findKth((size1+size2)/2, 0, 0) + findKth((size1+size2)/2+1, 0, 0))/2;
         }
         else
         {
-            return findKth((size1+size2)/2);
+            return findKth((size1+size2)/2+1, 0, 0);
         }
     }
 };
