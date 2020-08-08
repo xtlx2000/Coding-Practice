@@ -7,59 +7,67 @@
  * };
  */
 class Solution {
-public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode dummyNode(-1);
-        dummyNode.next = head;
-
-        ListNode *prev = &dummyNode;
-        ListNode *start = dummyNode.next;
-
-        bool isMatch = true;
-        while (start && isMatch)
-        {
-            ListNode *end = start;
-            for (size_t i = 0; i < k-1; ++i)
-            {
-                if (end->next)
-                {
-                    end = end->next;
-                }
-                else
-                {
-                    isMatch = false;
-                    break;
-                }
-            }
-            if (!isMatch)
-            {
-                break;
-            }
-            reverse(prev, start, end);
-
-            prev = start;
-            start = start->next;
-        }
-        return dummyNode.next;
-    }
-    void reverse(ListNode *prev, ListNode *start, ListNode *end)
+    bool findNextGroup(ListNode *prev, ListNode* start, ListNode **end, ListNode **tail, int k)
     {
-        ListNode *tail = end->next;
-
-        ListNode *first = start;
-        ListNode *second = start->next;
-        
-        while (first != end)
+        if (start == NULL)
         {
-            ListNode *third = second->next;
-            
-            second->next = first;
+            return false;
+        }
+        
+        *end = start;
+        for (int i = 0; i < k-1; ++i)
+        {
+            if ((*end)->next)
+            {
+                *end = (*end)->next;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        if (*end)
+        {
+            *tail = (*end)->next;
+        }
+        return true;
+    }
 
+    void reverse (ListNode *prev, ListNode *start, ListNode *end, ListNode *tail)
+    {
+        ListNode *first = start;
+        ListNode *second = first->next;
+
+        while (first &&　second && first != end)
+        {
+            ListNode *thrid = second->next;
+
+            second->next = first;
             first = second;
-            second = third;
+            second = thrid;
         }
 
         prev->next = end;
         start->next = tail;
+    }
+
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode dummy;
+        dummy.next = head;
+        ListNode *prev = &dummy;
+        ListNode *start = dummy.next;
+        ListNode *end = start;
+        ListNode *tail = start;
+
+        while (findNextGroup(prev, start, &end, &tail, k))
+        {
+            reverse(prev, start, end, tail);
+
+            prev = start;
+            start = prev->next;
+        } 
+
+        return dummy.next;
     }
 };
